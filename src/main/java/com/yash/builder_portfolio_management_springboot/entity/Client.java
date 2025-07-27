@@ -1,5 +1,6 @@
 package com.yash.builder_portfolio_management_springboot.entity;
 
+import com.yash.builder_portfolio_management_springboot.enums.ClientType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -11,21 +12,17 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-
-class Contractor {
+public class Client {
     @Id
-    private String contractorEmailId;
-    private String contractorName;
-    private String contractorPhoneNumber;
+    private String clientEmailId;
+    private String clientName;
+    private ClientType clientType;
     @OneToOne
     @JoinColumn(name= "address_id",referencedColumnName = "addressId")
-    private int addressId;
-    private int registrationNumber;
-    @OneToOne
-    @JoinColumn(name = "contractorEmailId", referencedColumnName = "userEmailId")
-    private User user;
+    private Address address;
 
+    private String phoneNumber;
 }
