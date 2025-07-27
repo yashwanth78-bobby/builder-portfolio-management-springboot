@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-class Contractor {
+public class Contractor {
     @Id
     private String contractorEmailId;
     private String contractorName;
