@@ -2,7 +2,7 @@ package com.yash.builder_portfolio_management_springboot.enums;
 
 public enum Role {
     ADMIN,
-    BUILDER,
+    CONTRACTOR,
     CLIENT,
     PROJECT_MANAGER;
 
