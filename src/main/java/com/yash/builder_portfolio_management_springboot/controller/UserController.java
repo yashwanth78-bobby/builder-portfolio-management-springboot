@@ -6,6 +6,8 @@ import com.yash.builder_portfolio_management_springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -15,13 +17,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public void createUser(@RequestParam String userEmailId, @RequestParam String password, @RequestParam Role role) {
-        userService.createUser(userEmailId, password, role);
+    public void createUser(@RequestBody User user) {
+        userService.createUser(user.getUserEmailId(), user.getPasswordHash(), user.getRole());
     }
 
     @PutMapping("/{userEmailId}")
-    public void updateUser(@PathVariable String userEmailId, @RequestParam String newPassword) {
-        userService.updateUser(userEmailId, newPassword);
+    public void updateUser(@PathVariable String userEmailId, @RequestBody User user) {
+        userService.updateUser(userEmailId, user.getPasswordHash());
     }
 
     @DeleteMapping("/{userEmailId}")
@@ -32,5 +34,10 @@ public class UserController {
     @GetMapping("/{userEmailId}")
     public User getUserDetails(@PathVariable String userEmailId) {
         return userService.getUserDetails(userEmailId);
+    }
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 }

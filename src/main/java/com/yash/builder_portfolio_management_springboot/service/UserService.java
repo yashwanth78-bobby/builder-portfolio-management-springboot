@@ -6,6 +6,7 @@ import com.yash.builder_portfolio_management_springboot.repository.UserRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,12 @@ public class UserService {
     public User getUserDetails(String userEmailId) {
         return userRepository.findById(userEmailId)
                 .orElseThrow(() -> new RuntimeException("User with email " + userEmailId + " not found."));
+    }
+    public List<User> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            throw new RuntimeException("No users found.");
+        }
+        return users;
     }
 }

@@ -22,8 +22,7 @@ public class ClientController {
                 client.getClientName(),
                 client.getClientType(),
                 client.getAddress(),
-                client.getPhoneNumber(),
-                client.getUser()
+                client.getPhoneNumber()
         );
     }
 

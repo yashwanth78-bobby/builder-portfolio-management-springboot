@@ -1,6 +1,7 @@
 package com.yash.builder_portfolio_management_springboot.service;
 
 
+import com.yash.builder_portfolio_management_springboot.entity.Address;
 import com.yash.builder_portfolio_management_springboot.entity.Contractor;
 import com.yash.builder_portfolio_management_springboot.repository.ContratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,15 @@ public class ContractorService {
     private ContratorRepository contratorRepository;
 
     // Create a new contractor
-    public Contractor createContractor(Contractor contractor) {
-        return contratorRepository.save(contractor);
+    public Contractor createContractor(String contractorEmailId, String contractorName, String contractorPhoneNumber, Address address, int registrationNumber) {
+        Contractor newContractor = Contractor.builder()
+                .contractorEmailId(contractorEmailId)
+                .contractorName(contractorName)
+                .contractorPhoneNumber(contractorPhoneNumber)
+                .address(address)
+                .registrationNumber(registrationNumber)
+                .build();
+        return contratorRepository.save(newContractor);
     }
 
     // Update an existing contractor
@@ -28,7 +36,6 @@ public class ContractorService {
             contractor.setContractorPhoneNumber(updatedContractor.getContractorPhoneNumber());
             contractor.setAddress(updatedContractor.getAddress());
             contractor.setRegistrationNumber(updatedContractor.getRegistrationNumber());
-            contractor.setUser(updatedContractor.getUser());
             return contratorRepository.save(contractor);
         } else {
             throw new RuntimeException("Contractor not found with email ID: " + contractorEmailId);

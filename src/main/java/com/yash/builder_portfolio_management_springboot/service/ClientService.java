@@ -16,14 +16,13 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public void createClient(String clientEmailId, String clientName, ClientType clientType, Address address, String phoneNumber, User user) {
+    public void createClient(String clientEmailId, String clientName, ClientType clientType, Address address, String phoneNumber) {
         Client client = Client.builder()
                 .clientEmailId(clientEmailId)
                 .clientName(clientName)
                 .clientType(clientType)
                 .address(address)
                 .phoneNumber(phoneNumber)
-                .user(user)
                 .build();
         clientRepository.save(client);
     }

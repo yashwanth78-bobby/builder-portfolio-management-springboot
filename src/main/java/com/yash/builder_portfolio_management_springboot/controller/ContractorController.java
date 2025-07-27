@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/contractors")
@@ -18,7 +17,8 @@ public class ContractorController {
 
     @PostMapping
     public ResponseEntity<Contractor> createContractor(@RequestBody Contractor contractor) {
-        Contractor createdContractor = contractorService.createContractor(contractor);
+        Contractor createdContractor = contractorService.createContractor(contractor.getContractorEmailId(), contractor.getContractorName(),
+                contractor.getContractorPhoneNumber(), contractor.getAddress(), contractor.getRegistrationNumber());
         return ResponseEntity.ok(createdContractor);
     }
 
