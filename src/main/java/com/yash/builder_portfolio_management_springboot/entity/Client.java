@@ -25,4 +25,7 @@ public class Client {
     private Address address;
 
     private String phoneNumber;
+    @OneToOne
+    @JoinColumn(name = "user_email_id", referencedColumnName = "userEmailId")
+    private User user;
 }

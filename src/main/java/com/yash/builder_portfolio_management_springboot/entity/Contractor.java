@@ -25,7 +25,7 @@ class Contractor {
     private int addressId;
     private int registrationNumber;
     @OneToOne
-    @JoinColumn(name = "contractorEmailId", referencedColumnName = "userEmailId")
+    @JoinColumn(name = "user_email_id", referencedColumnName = "userEmailId")
     private User user;
 
 }
